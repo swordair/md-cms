@@ -120,7 +120,7 @@ app.disable('view cache');
 var config = {
     session_secret : 'Hello, world!',
     db : 'session_store'
-}
+};
 
 
 
@@ -132,8 +132,8 @@ app.use(logger('dev'));
 
 app.use(cookieParser());
 
-app.use(bodyParser.urlencoded({ extended: false }))
-app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 
 app.use(session({
     secret: config.session_secret,
