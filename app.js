@@ -12,10 +12,11 @@ var passport = require('passport');
 var mongoose = require('mongoose');
 var bcrypt = require('bcrypt');
 var LocalStrategy = require('passport-local').Strategy;
-
-var userRouter = require('./routes/user');
 var SALT_WORK_FACTOR = 10;
 
+// router obj
+var userRouter = require('./routes/user');
+var editorRouter = require('./routes/editor');
 
 mongoose.connect('localhost', 'md-cms');
 var db = mongoose.connection;
@@ -153,7 +154,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 /* routes */
 app.use('/', userRouter);
-
+app.use('/', editorRouter);
 
 
 /* catch 404 and forward to error handler */
