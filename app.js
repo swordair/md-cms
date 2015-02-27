@@ -8,18 +8,12 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var session = require('express-session');
 var MongoStore = require('connect-mongo')(session);
+var pass = require('./config/pass');
+var db = require('./config/db');
+
 var passport = require('passport');
 
-var db = require('./config/db');
-var LocalStrategy = require('passport-local').Strategy;
-
-
-// router obj
-var userRouter = require('./routes/user');
-var editorRouter = require('./routes/editor');
-
 // Seed a user
-
 var user = new db.User({username: 'admin', email: 'admin@example.com', password: 'admin'});
 user.save(function(err){
     if(err){
@@ -29,47 +23,14 @@ user.save(function(err){
     }
 });
 
-// passport serialize & deserialize
-passport.serializeUser(function(user, done){
-    done(null, user.id);
-});
 
-passport.deserializeUser(function(id, done){
-    db.User.findById(id, function(err, user) {
-        done(err, user);
-    });
-});
-
-// use the LocalStrategy within Passport
-passport.use(new LocalStrategy(function(username, password, done){
-    process.nextTick(function () {
-        User.findOne({username: username}, function(err, user){
-            if(err) return done(err);
-            if(!user) return done(null, false, {message: 'Unknown user ' + username});
-            user.comparePassword(password, function(err, isMatch){
-                if(err) return done(err);
-                if(isMatch){
-                    return done(null, user);
-                }else{
-                    return done(null, false, {message: 'Invalid password'});
-                };
-            });
-        });
-    });
-}));
-
+// router obj
+var userRouter = require('./routes/user');
+var editorRouter = require('./routes/editor');
 
 
 /* init */
 var app = express();
-
-
-
-
-
-
-
-
 
 
 /* view engine setup */
@@ -85,9 +46,6 @@ var config = {
     session_secret : 'Hello, world!',
     db : 'session_store'
 };
-
-
-
 
 
 /* middleware */
