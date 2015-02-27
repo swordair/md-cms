@@ -77,12 +77,12 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // router obj
 var userRouter = require('./routes/user');
-var editorRouter = require('./routes/editor');
+var pageRouter = require('./routes/page');
 var adminRouter = require('./routes/admin');
 
 /* routes */
 app.use('/', userRouter);
-app.use('/', editorRouter);
+app.use('/', pageRouter);
 app.use('/', adminRouter);
 
 
