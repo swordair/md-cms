@@ -9,55 +9,18 @@ var bodyParser = require('body-parser');
 var session = require('express-session');
 var MongoStore = require('connect-mongo')(session);
 var passport = require('passport');
-var mongoose = require('mongoose');
-var bcrypt = require('bcrypt');
+
+var db = require('./config/db');
 var LocalStrategy = require('passport-local').Strategy;
-var SALT_WORK_FACTOR = 10;
+
 
 // router obj
 var userRouter = require('./routes/user');
 var editorRouter = require('./routes/editor');
 
-mongoose.connect('localhost', 'md-cms');
-var db = mongoose.connection;
-db.on('error', console.error.bind(console, 'connection error:'));
-db.once('open', function callback() {
-    console.log('Connected to DB md-cms');
-});
-
-var userSchema = mongoose.Schema({
-    username : {type : String, required : true, unique : true},
-    email : {type : String, required : true, unique : true},
-    password : {type: String, required: true}
-});
-
-
-userSchema.methods.comparePassword = function(cPassword, cb){
-    bcrypt.compare(cPassword, this.password, function(err, isMatch){
-        if(err) return cb(err);
-        cb(null, isMatch);
-    });
-};
-
-
-// Bcrypt middleware
-userSchema.pre('save', function(next){
-    var user = this;
-    if(!user.isModified('password')) return next();
-    bcrypt.genSalt(SALT_WORK_FACTOR, function(err, salt){
-        if(err) return next(err);
-        bcrypt.hash(user.password, salt, function(err, hash){
-            if(err) return next(err);
-            user.password = hash;
-            next();
-        });
-    });
-});
-
-
 // Seed a user
-var User = mongoose.model('User', userSchema);
-var user = new User({username: 'admin', email: 'admin@example.com', password: 'admin'});
+
+var user = new db.User({username: 'admin', email: 'admin@example.com', password: 'admin'});
 user.save(function(err){
     if(err){
         console.log(err);
@@ -72,7 +35,7 @@ passport.serializeUser(function(user, done){
 });
 
 passport.deserializeUser(function(id, done){
-    User.findById(id, function(err, user) {
+    db.User.findById(id, function(err, user) {
         done(err, user);
     });
 });

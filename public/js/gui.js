@@ -4,10 +4,10 @@ var previewPane = document.getElementById('preview-pane');
 
 inputPane.onkeyup = function(){
     convertText();
-}
+};
 inputPane.onmouseup = function(){
     convertText();
-}
+};
 
 marked;
 
@@ -43,3 +43,6 @@ function convertText() {
 	// restore proportional scroll positions
 	//restoreScrollPositions();
 };
+
+// init convert
+convertText();
