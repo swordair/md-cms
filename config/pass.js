@@ -22,7 +22,7 @@ passport.use(new LocalStrategy(function(username, password, done){
             user.comparePassword(password, function(err, isMatch){
                 if(err) return done(err);
                 if(isMatch){
-                    return done(null, user);
+                    return done(null, user, {message: 'Login success'});
                 }else{
                     return done(null, false, {message: 'Invalid password'});
                 };
@@ -32,6 +32,9 @@ passport.use(new LocalStrategy(function(username, password, done){
 }));
 
 function ensureAuthenticated(req, res, next) {
+	
+	console.log(req.authInfo.message);
+	
     if(req.isAuthenticated()){
         return next();
     }

@@ -8,6 +8,7 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var session = require('express-session');
 var MongoStore = require('connect-mongo')(session);
+var flash = require('connect-flash');
 var pass = require('./config/pass');
 var db = require('./config/db');
 
@@ -66,8 +67,11 @@ app.use(session({
     saveUninitialized: true,
 }));
 
+
+
 app.use(passport.initialize());
 app.use(passport.session());
+app.use(flash());
 
 app.use(express.static(path.join(__dirname, 'public')));
 

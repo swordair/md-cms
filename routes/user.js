@@ -8,13 +8,23 @@ router.get('/',ensureAuthenticated, function(req, res){
 });
 
 router.get('/user/login', function(req, res){
-	res.render('login', {title: 'MD'});
+	res.render('login', {title: 'MD', msg : req.flash('authInfo')});
 });
 
-router.post('/user/login', passport.authenticate('local', { 
-    failureRedirect: '/user/login'
-}), function(req, res){
-    res.redirect('/');
+router.post('/user/login', function(req, res, next){
+	passport.authenticate('local', function(err, user, info){
+		if(err) return next(err);
+		if(!user){
+			req.flash('authInfo', info.message);
+			
+			return res.redirect('/user/login');
+		}
+		
+		req.logIn(user, function(err) {
+			if (err) return next(err);
+			return res.redirect('/users/' + user.username);
+		});
+	})(req, res, next);
 });
 
 router.get('/user/logout', function(req, res){
@@ -30,5 +40,6 @@ function ensureAuthenticated(req, res, next) {
     if(req.isAuthenticated()){
         return next();
     }
+    
     res.redirect('/user/login');
 }
