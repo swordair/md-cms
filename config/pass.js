@@ -46,5 +46,5 @@ function ensureAdmin(req, res, next){
 	}
 }
 
-
+exports.ensureAdmin = ensureAdmin;
 exports.ensureAuthenticated = ensureAuthenticated;

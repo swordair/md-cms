@@ -27,9 +27,6 @@ user.save(function(err){
 user2.save();
 
 
-// router obj
-var userRouter = require('./routes/user');
-var editorRouter = require('./routes/editor');
 
 
 /* init */
@@ -78,10 +75,15 @@ app.use(flash());
 app.use(express.static(path.join(__dirname, 'public')));
 
 
+// router obj
+var userRouter = require('./routes/user');
+var editorRouter = require('./routes/editor');
+var adminRouter = require('./routes/admin');
 
 /* routes */
 app.use('/', userRouter);
 app.use('/', editorRouter);
+app.use('/', adminRouter);
 
 
 /* catch 404 and forward to error handler */
