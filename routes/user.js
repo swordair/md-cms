@@ -1,8 +1,9 @@
 var express = require('express');
 var router = express.Router();
+var pass = require('../config/pass');
 var passport = require('passport');
 
-router.get('/',ensureAuthenticated, function(req, res){
+router.get('/', pass.ensureAuthenticated, function(req, res){
     
 	res.render('index', {title: 'MD'});
 });
@@ -16,7 +17,6 @@ router.post('/user/login', function(req, res, next){
 		if(err) return next(err);
 		if(!user){
 			req.flash('authInfo', info.message);
-			
 			return res.redirect('/user/login');
 		}
 		
@@ -32,14 +32,14 @@ router.get('/user/logout', function(req, res){
 	res.render('logout', {});
 });
 
+
+router.get('/users/:username', pass.ensureAuthenticated, function(req, res){
+	var username = req.user.username;
+	if(req.params.username == username){
+		res.render('user', {title: username, username: username});
+	}else{
+		res.send('It\'s not you.');
+	}
+});
+
 module.exports = router;
-
-
-
-function ensureAuthenticated(req, res, next) {
-    if(req.isAuthenticated()){
-        return next();
-    }
-    
-    res.redirect('/user/login');
-}

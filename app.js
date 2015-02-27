@@ -15,7 +15,8 @@ var db = require('./config/db');
 var passport = require('passport');
 
 // Seed a user
-var user = new db.User({username: 'admin', email: 'admin@example.com', password: 'admin'});
+var user = new db.User({username: 'admin', email: 'admin@example.com', password: 'admin', admin: true});
+var user2 = new db.User({username: 'a', email: 'a@a.com', password:'a'});
 user.save(function(err){
     if(err){
         console.log(err);
@@ -23,6 +24,7 @@ user.save(function(err){
         console.log('user: ' + user.username + " saved.");
     }
 });
+user2.save();
 
 
 // router obj

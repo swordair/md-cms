@@ -32,13 +32,18 @@ passport.use(new LocalStrategy(function(username, password, done){
 }));
 
 function ensureAuthenticated(req, res, next) {
-	
-	console.log(req.authInfo.message);
-	
     if(req.isAuthenticated()){
         return next();
     }
     res.redirect('/user/login');
+}
+
+function ensureAdmin(req, res, next){
+	if(req.user && req.user.admin === true){
+		next();
+	}else{
+		res.send(403);
+	}
 }
 
 
