@@ -35,8 +35,8 @@ router.get('/user/logout', function(req, res){
 
 router.get('/users/:username', pass.ensureAuthenticated, function(req, res){
 	var username = req.user.username;
-	if(req.params.username == username){
-		res.render('user', {title: username, username: username});
+	if(req.params.username == username || req.user.admin){
+		res.render('user', {title: req.params.username, username: req.params.username});
 	}else{
 		res.send('It\'s not you.');
 	}

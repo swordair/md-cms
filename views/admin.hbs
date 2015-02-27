@@ -12,7 +12,12 @@
     </tr>
     {{#each users}}
     <tr>
-        <td>{{this.username}}</td><td>{{this.mail}}</td><td><a href="">remove</a></td>
+        <td><a href="/users/{{this.username}}">{{this.username}}</a></td><td>{{this.mail}}</td>
+        <td>
+        {{#unless this.admin}}
+        <a href="/admin/user/remove/{{this.username}}">remove</a>
+        {{/unless}}
+        </td>
     </tr>
     {{/each}}
 </table>
@@ -20,10 +25,9 @@
 <div>
 
 <form action="/admin/user/add" method="post">
-    <input type="" placeholder="username"/>
-    
+    <input name="username" type="" placeholder="username"/>
+    <input type="submit" value="add new" />
 </form>
- 
-<a href="/admin/user/add">add new</a>
+
 
 </div>

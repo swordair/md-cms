@@ -22,9 +22,9 @@ var pageSchema = mongoose.Schema({
 });
 
 var userSchema = mongoose.Schema({
-    username : {type : String, required : true, unique : true},
-    email : {type : String, required : true, unique : true},
-    password : {type: String, required: true},
+    username : {type : String, index: true, required : true, unique : true},
+    email : {type : String, 'default' : ''},
+    password : {type: String},
     admin : {type: Boolean, 'default' : false}
 });
 
