@@ -15,7 +15,7 @@ db.once('open', function callback() {
 var pageSchema = mongoose.Schema({
 	pID : {type : String},
 	title : {type : String, required : true},
-	tag : String,
+	category : String,
 	content : [{
 		lang : String,
 		title : String,
@@ -57,5 +57,8 @@ userSchema.pre('save', function(next){
 var User = mongoose.model('User', userSchema);
 var Page = mongoose.model('Page', pageSchema);
 
+var ObjectId = mongoose.Schema.Types.ObjectId;
+
+exports.ObjectId = ObjectId;
 exports.User = User;
 exports.Page = Page;

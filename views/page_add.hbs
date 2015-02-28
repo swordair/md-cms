@@ -52,24 +52,26 @@ body{margin:0;font-family:tahoma;}
     </style>
 </head>
 <body>
-
+<form action="/page/add" method="post">
 <section class="entry-container">
     <div class="page-content">
         <header class="header container">
             <div class="row">
                 <section class="entry-title col-md-10">
-                    <input type="text" value="" placeholder="Page Title"/>
+                    <input name="title" type="text" value="" placeholder="Page Title"/>
                 </section>
                 <section class="operation-block col-md-2">
-                    <select name="" id="">
-                        <option value="">EN</option>
+                    <select name="lang" id="">
+                        <option value="en">EN</option>
+                        <option value="hk">HK</option>
+                        
                     </select>
                 </section>
             </div>
         </header>
         <section class="entry-markdown">
             <section id="entry-markdown-content" class="entry-markdown-content">
-                <textarea name="" id="markdown-input" placeholder="Markdown content..."></textarea>
+                <textarea name="mdContent" id="markdown-input" placeholder="Markdown content..."></textarea>
             </section>
         </section>
         <section class="entry-preview">
@@ -78,16 +80,16 @@ body{margin:0;font-family:tahoma;}
         <footer class="footer container">
             <div class="row">
                 <section class="entry-url col-md-8">
-                    <input type="text" value="" placeholder="Page URL"/>
+                    <input name="url" type="text" value="" placeholder="Page URL"/>
                 </section>
                 <section class="operation-block col-md-4">
-                    <button class="btn btn-primary">Create</button>
+                    <input type="submit" class="btn btn-primary" value="Create" />
                 </section>
             </div>
         </footer>
     </div>
 </section>
-    
+</form>
     
     <script type="text/javascript" src="/js/marked.js"></script>
     <script type="text/javascript" src="/js/gui.js"></script>
