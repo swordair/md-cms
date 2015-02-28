@@ -13,11 +13,13 @@
 <h3>{{this._id}}</h3>
 <table>
     <tr>
-        <th>title</th><th></th><th></th>
+        <th>title</th><th>en</th><th>hk</th>
     </tr>
 	{{#each this.pages}}
     <tr>
-    	<td>{{this.title}}<td>
+    	<td>{{this.title}}</td>
+    	<td>{{#if this.langFlag.en}}yes{{else}}<a href="/page/edit/{{this._id}}">+</a>{{/if}}</td>
+    	<td>{{#if this.langFlag.hk}}yes{{else}}<a href="/page/edit/{{this._id}}">+</a>{{/if}}</td>
     </tr>
 	{{/each}}
 </table>

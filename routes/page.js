@@ -12,21 +12,34 @@ router.get('/page',ensureAuthenticated, function(req, res){
     
 	db.Page.aggregate([{$group : {_id : '$category', pages : {$push : "$$ROOT"}}}]).exec(function(err, docs){
 		if(err) res.send(404);
-		console.log(docs);
+		
+		for(var i = 0; i < docs.length; i++){
+			for(var j = 0; j < docs[i].pages.length; j++){
+				docs[i].pages[j].langFlag = {};
+				for(var k = 0; k < docs[i].pages[j].content.length; k++){
+					docs[i].pages[j].langFlag[docs[i].pages[j].content[k].lang] = true;
+				}
+			}
+		}
+		console.log('-------------------------');
+		console.log(docs[0].pages[0].langFlag);
 		res.render('page_list', {title: 'MD', pageGroup : docs});
-
     });
-    
-    // db.Page.find({}, function(err, docs){
-    	// if(err) res.send(404);
-//     	
-    	// console.log(docs);
-//     	
-//     	
-    	// res.render('page_list', {title: 'MD', pages : docs});
-    // });
-    
+});
+
+router.get('/page/edit/:pId/:lang/',ensureAuthenticated, function(req, res){
+	var pId = req.params.pId,
+		lang = req.params.lang;
 	
+	if(pId){
+		db.Page.findOne({_id : pId.toObjectId()}, function(err, doc){
+			if(err) console.log(err);
+			for(var i = 0; i < doc.content.length; i++){
+				if(doc.content[i].lang == lang) break;
+			}
+			res.render('page_edit', {page : doc.content[i]});
+		});
+	}
 });
 
 router.get('/page/edit/:pId',ensureAuthenticated, function(req, res){
@@ -89,7 +102,7 @@ router.post('/page/add',ensureAuthenticated, function(req, res){
     		console.log(err);
     	}else{
     		console.log('new page created');
-    		res.redirect('/page/edit/' + doc.content[0]._id);
+    		res.redirect('/page');
     	}
     });
     
