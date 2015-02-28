@@ -13,15 +13,19 @@ db.once('open', function callback() {
 });
 
 var pageSchema = mongoose.Schema({
-	pID : {type : String, required : true},
-	mdContent : {type : String, required : true},
-	url : {type : String},
+	pID : {type : String},
 	title : {type : String, required : true},
-	lang : {type : String, reqiured : true}
+	tag : String,
+	content : [{
+		lang : String,
+		title : String,
+		url : {type : String, index : true, required : true, unique : true},
+		mdContent : String
+	}],
 });
 
 var userSchema = mongoose.Schema({
-    username : {type : String, index: true, required : true, unique : true},
+    username : {type : String, index : true, required : true, unique : true},
     email : {type : String, 'default' : ''},
     password : {type: String},
     admin : {type: Boolean, 'default' : false}
