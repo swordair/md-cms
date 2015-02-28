@@ -10,14 +10,21 @@ String.prototype.toObjectId = function() {
 
 router.get('/page',ensureAuthenticated, function(req, res){
     
-    db.Page.find({}, function(err, docs){
-    	if(err) res.send(404);
-    	
-    	console.log(docs);
-    	
-    	
-    	res.render('page_list', {title: 'MD', pages : docs});
+	db.Page.aggregate([{$group : {_id : '$category', pages : {$push : "$$ROOT"}}}]).exec(function(err, docs){
+		if(err) res.send(404);
+		console.log(docs);
+		res.render('page_list', {title: 'MD', pageGroup : docs});
+
     });
+    
+    // db.Page.find({}, function(err, docs){
+    	// if(err) res.send(404);
+//     	
+    	// console.log(docs);
+//     	
+//     	
+    	// res.render('page_list', {title: 'MD', pages : docs});
+    // });
     
 	
 });
@@ -81,7 +88,6 @@ router.post('/page/add',ensureAuthenticated, function(req, res){
     	if(err){
     		console.log(err);
     	}else{
-    		console.log(doc.content[0]._id);
     		console.log('new page created');
     		res.redirect('/page/edit/' + doc.content[0]._id);
     	}
