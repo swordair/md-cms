@@ -16,24 +16,37 @@ router.get('/page',ensureAuthenticated, function(req, res){
 router.get('/page/edit/:pId',ensureAuthenticated, function(req, res){
     var pId = req.params.pId;
     console.log(pId);
+    if(pId){
+    	db.Page.findOne({'_id' : pId.toObjectId()}, function(err, doc){
+    		if(err){ 
+    			console.log(err);
+    		}
+    		console.log(doc.content[0].mdContent);
+    		res.render('page_edit', {page : doc.content[0], pId : pId});
+    	});
+    }else{
+    	res.redirect('/page/add');
+    }
+});
+
+
+router.post('/page/edit/:pId',ensureAuthenticated, function(req, res){
+    var pId = req.params.pId;
+    console.log(pId);
     
     if(pId){
     	db.Page.findOne({'_id' : pId.toObjectId()}, function(err, doc){
     		if(err){ 
     			console.log(err);
     		}
-    		
-    		
     		console.log(doc.content[0].mdContent);
-    		
-    		res.render('page_edit', {page : doc.content[0]});
+    		res.render('page_edit', {page : doc.content[0], pId : pId});
     	});
-    	
-    	
     }else{
     	res.redirect('/page/add');
     }
 });
+
 
 router.get('/page/add',ensureAuthenticated, function(req, res){
 	res.render('page_add', {title: 'MD'});
