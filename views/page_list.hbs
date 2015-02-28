@@ -1,26 +1,26 @@
 {{!< default}}
 
-<h1>{{title}}<h1>
+<h1>{{title}}</h1>
 
 
-<h2>page list<h2>
+<h2>page list</h2>
 
 
 <table>
     <tr>
-        <th></th><th></th><th></th>
+        <th>title</th><th></th><th></th>
     </tr>
-
+	{{#each pages}}
     <tr>
-    	
+    	<td>{{this.title}}<td>
     </tr>
-
+	{{/each}}
 </table>
 
 <div>
 
-<div>
+<p>
 <a href="/page/add">add new page</a>
-</div>
+</p>
 
 </div>

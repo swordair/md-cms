@@ -10,19 +10,32 @@ String.prototype.toObjectId = function() {
 
 router.get('/page',ensureAuthenticated, function(req, res){
     
-	res.render('page_list', {title: 'MD'});
+    db.Page.find({}, function(err, docs){
+    	if(err) res.send(404);
+    	
+    	console.log(docs);
+    	
+    	
+    	res.render('page_list', {title: 'MD', pages : docs});
+    });
+    
+	
 });
 
 router.get('/page/edit/:pId',ensureAuthenticated, function(req, res){
     var pId = req.params.pId;
     console.log(pId);
     if(pId){
-    	db.Page.findOne({'_id' : pId.toObjectId()}, function(err, doc){
+    	db.Page.findOne({content : { $elemMatch : {'_id' : pId.toObjectId()}}}, function(err, doc){
     		if(err){ 
     			console.log(err);
     		}
-    		console.log(doc.content[0].mdContent);
-    		res.render('page_edit', {page : doc.content[0], pId : pId});
+    		for(var i = 0; i < doc.content.length; i++){
+    			if(doc.content[i]._id = pId){
+    				break;
+    			}
+    		}
+    		res.render('page_edit', {page : doc.content[i], pId : pId});
     	});
     }else{
     	res.redirect('/page/add');
@@ -35,15 +48,9 @@ router.post('/page/edit/:pId',ensureAuthenticated, function(req, res){
     console.log(pId);
     
     if(pId){
-    	db.Page.findOne({'_id' : pId.toObjectId()}, function(err, doc){
-    		if(err){ 
-    			console.log(err);
-    		}
-    		console.log(doc.content[0].mdContent);
-    		res.render('page_edit', {page : doc.content[0], pId : pId});
-    	});
+    	res.send(' ' + pId);
     }else{
-    	res.redirect('/page/add');
+    	res.send(404);
     }
 });
 
@@ -74,9 +81,9 @@ router.post('/page/add',ensureAuthenticated, function(req, res){
     	if(err){
     		console.log(err);
     	}else{
-    		console.log(doc._id);
+    		console.log(doc.content[0]._id);
     		console.log('new page created');
-    		res.redirect('/page/edit/' + doc._id);
+    		res.redirect('/page/edit/' + doc.content[0]._id);
     	}
     });
     
