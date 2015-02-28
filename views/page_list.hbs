@@ -18,8 +18,8 @@
 	{{#each this.pages}}
     <tr>
     	<td>{{this.title}}</td>
-    	<td>{{#if this.langFlag.en}}yes{{else}}<a href="/page/edit/{{this._id}}">+</a>{{/if}}</td>
-    	<td>{{#if this.langFlag.hk}}yes{{else}}<a href="/page/edit/{{this._id}}">+</a>{{/if}}</td>
+    	<td>{{#if this.langFlag.en}}yes{{else}}<a href="/page/edit/{{this._id}}/en">+</a>{{/if}}</td>
+    	<td>{{#if this.langFlag.hk}}yes{{else}}<a href="/page/edit/{{this._id}}/hk">+</a>{{/if}}</td>
     </tr>
 	{{/each}}
 </table>
