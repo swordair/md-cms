@@ -27,40 +27,29 @@ router.get('/page',ensureAuthenticated, function(req, res){
     });
 });
 
-router.get('/page/edit/:pId/:lang/',ensureAuthenticated, function(req, res){
+
+function pageEdit(req, res){
 	var pId = req.params.pId,
 		lang = req.params.lang;
-	
+	var langFlag = {};
 	if(pId){
 		db.Page.findOne({_id : pId.toObjectId()}, function(err, doc){
 			if(err) console.log(err);
 			for(var i = 0; i < doc.content.length; i++){
-				if(doc.content[i].lang == lang) break;
+				if(doc.content[i].lang == lang){
+					langFlag[lang] = 1;
+					break;
+				}
 			}
-			res.render('page_edit', {page : doc.content[i]});
+			console.log(langFlag);
+			res.render('page_edit', {page : doc.content[i], langFlag: langFlag});
 		});
 	}
-});
+}
 
-router.get('/page/edit/:pId',ensureAuthenticated, function(req, res){
-    var pId = req.params.pId;
-    console.log(pId);
-    if(pId){
-    	db.Page.findOne({content : { $elemMatch : {'_id' : pId.toObjectId()}}}, function(err, doc){
-    		if(err){ 
-    			console.log(err);
-    		}
-    		for(var i = 0; i < doc.content.length; i++){
-    			if(doc.content[i]._id = pId){
-    				break;
-    			}
-    		}
-    		res.render('page_edit', {page : doc.content[i], pId : pId});
-    	});
-    }else{
-    	res.redirect('/page/add');
-    }
-});
+
+router.get('/page/edit/:pId/:lang/',ensureAuthenticated, pageEdit);
+router.get('/page/edit/:pId',ensureAuthenticated, pageEdit);
 
 
 router.post('/page/edit/:pId',ensureAuthenticated, function(req, res){
