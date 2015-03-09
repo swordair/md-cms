@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="/css/faq-markdown.css" />
 </head>
 <body>
-<form action="/page/add" method="post">
+<form action="" method="post">
 <section class="entry-container">
     <div class="page-content">
         <header class="header container">
@@ -18,9 +18,18 @@
                 </section>
                 <section class="operation-block col-md-2">
                     <select name="lang" id="">
-                        <option value="en">EN</option>
-                        <option value="hk">HK</option>
-                        
+                        <option {{#if langFlag.en}}selected{{/if}} value="en">EN</option>
+                        <option {{#if langFlag.hk}}selected{{/if}} value="hk">HK</option>
+                        <option {{#if langFlag.jp}}selected{{/if}} value="jp">JP</option>
+                        <option {{#if langFlag.kr}}selected{{/if}} value="kr">KR</option>
+                        <option {{#if langFlag.de}}selected{{/if}} value="de">DE</option>
+                        <option {{#if langFlag.es}}selected{{/if}} value="es">ES</option>
+                        <option {{#if langFlag.ru}}selected{{/if}} value="ru">RU</option>
+                        <option {{#if langFlag.vn}}selected{{/if}} value="vn">VN</option>
+                        <option {{#if langFlag.sg}}selected{{/if}} value="sg">SG</option>
+                        <option {{#if langFlag.my}}selected{{/if}} value="my">MY</option>
+                        <option {{#if langFlag.id}}selected{{/if}} value="id">ID</option>
+                        <option {{#if langFlag.th}}selected{{/if}} value="th">TH</option>
                     </select>
                 </section>
             </div>

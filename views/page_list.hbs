@@ -13,24 +13,25 @@
 <h3>{{this._id}}</h3>
 <table>
     <tr>
-        <th>title</th><th>en</th><th>hk</th><th>jp</th><th>kr</th><th>fr</th><th>de</th><th>es</th><th>ru</th><th>vn</th><th>sg</th><th>my</th><th>id</th><th>th</th>
+        <th>title</th><th>en</th><th>hk</th><th>jp</th><th>kr</th><th>fr</th><th>de</th><th>es</th><th>ru</th><th>vn</th><th>sg</th><th>my</th><th>id</th><th>th</th><th>oprations</th>
     </tr>
 	{{#each this.pages}}
     <tr>
     	<td>{{this.title}}</td>
     	<td>{{#if this.langFlag.en}}<a href="/page/edit/{{this._id}}/en">yes</a>{{else}}<a href="/page/edit/{{this._id}}/en">+</a>{{/if}}</td>
     	<td>{{#if this.langFlag.hk}}<a href="/page/edit/{{this._id}}/hk">yes</a>{{else}}<a href="/page/edit/{{this._id}}/hk">+</a>{{/if}}</td>
-    	<td>{{#if this.langFlag.jp}}<a href="/page/edit/{{this._id}}/jp">yes</a>{{else}}<a href="/page/edit/{{this._id}}/en">+</a>{{/if}}</td>
-    	<td>{{#if this.langFlag.kr}}<a href="/page/edit/{{this._id}}/kr">yes</a>{{else}}<a href="/page/edit/{{this._id}}/en">+</a>{{/if}}</td>
-    	<td>{{#if this.langFlag.fr}}<a href="/page/edit/{{this._id}}/fr">yes</a>{{else}}<a href="/page/edit/{{this._id}}/en">+</a>{{/if}}</td>
-    	<td>{{#if this.langFlag.de}}<a href="/page/edit/{{this._id}}/de">yes</a>{{else}}<a href="/page/edit/{{this._id}}/en">+</a>{{/if}}</td>
-    	<td>{{#if this.langFlag.es}}<a href="/page/edit/{{this._id}}/es">yes</a>{{else}}<a href="/page/edit/{{this._id}}/en">+</a>{{/if}}</td>
-    	<td>{{#if this.langFlag.ru}}<a href="/page/edit/{{this._id}}/ru">yes</a>{{else}}<a href="/page/edit/{{this._id}}/en">+</a>{{/if}}</td>
-    	<td>{{#if this.langFlag.vn}}<a href="/page/edit/{{this._id}}/vn">yes</a>{{else}}<a href="/page/edit/{{this._id}}/en">+</a>{{/if}}</td>
-    	<td>{{#if this.langFlag.sg}}<a href="/page/edit/{{this._id}}/sg">yes</a>{{else}}<a href="/page/edit/{{this._id}}/en">+</a>{{/if}}</td>
-    	<td>{{#if this.langFlag.my}}<a href="/page/edit/{{this._id}}/my">yes</a>{{else}}<a href="/page/edit/{{this._id}}/en">+</a>{{/if}}</td>
-    	<td>{{#if this.langFlag.id}}<a href="/page/edit/{{this._id}}/id">yes</a>{{else}}<a href="/page/edit/{{this._id}}/en">+</a>{{/if}}</td>
-    	<td>{{#if this.langFlag.th}}<a href="/page/edit/{{this._id}}/th">yes</a>{{else}}<a href="/page/edit/{{this._id}}/en">+</a>{{/if}}</td>
+    	<td>{{#if this.langFlag.jp}}<a href="/page/edit/{{this._id}}/jp">yes</a>{{else}}<a href="/page/edit/{{this._id}}/jp">+</a>{{/if}}</td>
+    	<td>{{#if this.langFlag.kr}}<a href="/page/edit/{{this._id}}/kr">yes</a>{{else}}<a href="/page/edit/{{this._id}}/kr">+</a>{{/if}}</td>
+    	<td>{{#if this.langFlag.fr}}<a href="/page/edit/{{this._id}}/fr">yes</a>{{else}}<a href="/page/edit/{{this._id}}/fr">+</a>{{/if}}</td>
+    	<td>{{#if this.langFlag.de}}<a href="/page/edit/{{this._id}}/de">yes</a>{{else}}<a href="/page/edit/{{this._id}}/de">+</a>{{/if}}</td>
+    	<td>{{#if this.langFlag.es}}<a href="/page/edit/{{this._id}}/es">yes</a>{{else}}<a href="/page/edit/{{this._id}}/es">+</a>{{/if}}</td>
+    	<td>{{#if this.langFlag.ru}}<a href="/page/edit/{{this._id}}/ru">yes</a>{{else}}<a href="/page/edit/{{this._id}}/ru">+</a>{{/if}}</td>
+    	<td>{{#if this.langFlag.vn}}<a href="/page/edit/{{this._id}}/vn">yes</a>{{else}}<a href="/page/edit/{{this._id}}/vn">+</a>{{/if}}</td>
+    	<td>{{#if this.langFlag.sg}}<a href="/page/edit/{{this._id}}/sg">yes</a>{{else}}<a href="/page/edit/{{this._id}}/sg">+</a>{{/if}}</td>
+    	<td>{{#if this.langFlag.my}}<a href="/page/edit/{{this._id}}/my">yes</a>{{else}}<a href="/page/edit/{{this._id}}/my">+</a>{{/if}}</td>
+    	<td>{{#if this.langFlag.id}}<a href="/page/edit/{{this._id}}/id">yes</a>{{else}}<a href="/page/edit/{{this._id}}/id">+</a>{{/if}}</td>
+    	<td>{{#if this.langFlag.th}}<a href="/page/edit/{{this._id}}/th">yes</a>{{else}}<a href="/page/edit/{{this._id}}/th">+</a>{{/if}}</td>
+    	<td><a href="/page/remove/{{this._id}}">remove</a></td>
     </tr>
 	{{/each}}
 </table>

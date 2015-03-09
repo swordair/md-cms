@@ -13,10 +13,9 @@ db.once('open', function callback() {
 });
 
 var pageSchema = mongoose.Schema({
-	pID : {type : String},
 	title : {type : String, required : true},
 	category : String,
-	content : [{
+	contents : [{
 		lang : String,
 		title : String,
 		url : {type : String, index : true, required : true, unique : true},
