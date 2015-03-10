@@ -21,8 +21,7 @@ function pageList(req, res){
 			}
 		}
 		console.log('-------------------------');
-		
-		//console.log(docs[0].pages[0].langFlag);
+
 		res.render('page_list', {title: 'MD', pageGroup : docs});
     });
 }
@@ -31,6 +30,7 @@ function pageList(req, res){
 function pageEdit(req, res){
 	var pId = req.params.pId;
 	var lang = req.params.lang;
+	
 	var title = req.body.title;
     var category = 'faq';
     var language = req.body.lang;
@@ -76,6 +76,7 @@ function pageEdit(req, res){
 	}
 }
 
+
 function pageAdd(req, res){
 	var pId = req.params.pId;
 	var lang = req.params.lang;
@@ -108,6 +109,7 @@ function pageAdd(req, res){
 	}
 }
 
+
 function pageRemove(req, res){
 	var pId = req.params.pId;
 	
@@ -117,15 +119,14 @@ function pageRemove(req, res){
 	});
 }
 
+
 router.get('/page',ensureAuthenticated, pageList);
 router.get('/page/add',ensureAuthenticated, pageAdd);
 router.post('/page/add',ensureAuthenticated, pageAdd);
-// router.get('/page/add/:pId/:lang', ensureAuthenticated, pageAdd);
-// router.post('/page/add/:pId/:lang', ensureAuthenticated, pageAdd);
-router.get('/page/edit/:pId/:lang',ensureAuthenticated, pageEdit);
-router.post('/page/edit/:pId/:lang',ensureAuthenticated, pageEdit);
-router.get('/page/edit/:pId',ensureAuthenticated, pageEdit);
-router.get('/page/remove/:pId',ensureAuthenticated, pageRemove);
+router.get('/page/edit/:pId/:lang', ensureAuthenticated, pageEdit);
+router.post('/page/edit/:pId/:lang', ensureAuthenticated, pageEdit);
+router.get('/page/edit/:pId', ensureAuthenticated, pageEdit);
+router.get('/page/remove/:pId', ensureAuthenticated, pageRemove);
 
 module.exports = router;
 
