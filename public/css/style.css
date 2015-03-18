@@ -1,1 +1,7 @@
 /* main css */
+table td.exist{background:#76B556;color:#fff;}
+table td.exist a{color:#fff;}
+table td.none{background:#D96244;color:#fff;}
+table td.none a{color:#fff;}
+.td-page-title{width:40%;}
+.exist,.none,.th-lang-flag{text-align:center;}
