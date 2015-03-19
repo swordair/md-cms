@@ -1,33 +1,39 @@
 {{!< default}}
 
-<h1>{{title}}</h1>
 
+{{!< default}}
 
-<h2>User list</h2>
-
-
-<table>
-    <tr>
-        <th>username</th><th>mail</th><th>oprations</th>
-    </tr>
-    {{#each users}}
-    <tr>
-        <td><a href="/users/{{this.username}}">{{this.username}}</a></td><td>{{this.mail}}</td>
-        <td>
-        {{#unless this.admin}}
-        <a href="/admin/user/remove/{{this.username}}">remove</a>
-        {{/unless}}
-        </td>
-    </tr>
-    {{/each}}
-</table>
-
-<div>
-
-<form action="/admin/user/add" method="post">
-    <input name="username" type="" placeholder="username"/>
-    <input type="submit" value="add new" />
-</form>
-
-
+<div class="container-fluid">
+    <div class="row">
+        {{> sidebar}}
+        
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+            <h1 class="page-header">{{title}}</h1>
+            
+            <h2>User list</h2>
+            
+            <table class="table">
+                <tr>
+                    <th>username</th><th>mail</th><th>oprations</th>
+                </tr>
+                {{#each users}}
+                <tr>
+                    <td><a href="/users/{{this.username}}">{{this.username}}</a></td><td>{{this.mail}}</td>
+                    <td>
+                    {{#unless this.admin}}
+                    <a href="/admin/user/remove/{{this.username}}">remove</a>
+                    {{/unless}}
+                    </td>
+                </tr>
+                {{/each}}
+            </table>
+            
+            <div>
+                <form action="/admin/user/add" method="post">
+                    <input name="username" type="" placeholder="username"/>
+                    <input type="submit" value="add new" />
+                </form>
+            </div>
+        </div>
+    </div>
 </div>

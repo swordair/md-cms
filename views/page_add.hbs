@@ -6,11 +6,13 @@
     <link rel="stylesheet" href="/css/bootstrap.min.css" />
     <link rel="stylesheet" href="/css/page-edit.css" />
     <link rel="stylesheet" href="/css/faq-markdown.css" />
+    <link rel="stylesheet" href="/css/style.css" />
 </head>
 <body>
-<form action="" method="post">
-<section class="entry-container">
-    <div class="page-content">
+    {{> header}}
+
+
+    <form action="" method="post">
         <header class="header container">
             <div class="row">
                 <section class="entry-title col-md-10">
@@ -52,12 +54,10 @@
                 </section>
             </div>
         </footer>
-    </div>
-</section>
-</form>
+    </form>
     
-    <script type="text/javascript" src="/js/marked.js"></script>
-    <script type="text/javascript" src="/js/gui.js"></script>
-    
+<script type="text/javascript" src="/js/marked.js"></script>
+<script type="text/javascript" src="/js/gui.js"></script>
+
 </body>
 </html>
