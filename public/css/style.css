@@ -18,6 +18,8 @@ body{padding-top:50px;}
 .nav-sidebar > .active > a,
 .nav-sidebar > .active > a:hover,
 .nav-sidebar > .active > a:focus {color: #fff;background-color: #428bca;}
+.nav-sidebar-header{margin:0 -20px;border-bottom:1px solid #aaa;}
+.nav-sidebar-header > h3{color:#666;margin:0;padding:10px;font-size:12px;}
 
 
 /* dash main */
