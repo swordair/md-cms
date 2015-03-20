@@ -21,8 +21,9 @@ function pageList(req, res){
 			}
 		}
 		console.log('-------------------------');
-
-		res.render('page_list', {title: 'MD', pageGroup : docs});
+        var sidebar = {};
+        sidebar.pages = 1;
+		res.render('page_list', {title: 'MD', pageGroup : docs, sidebar: sidebar});
     });
 }
 

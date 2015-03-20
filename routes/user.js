@@ -4,8 +4,9 @@ var pass = require('../config/pass');
 var passport = require('passport');
 
 router.get('/', pass.ensureAuthenticated, function(req, res){
-    
-	res.render('index', {title: 'MD'});
+    var sidebar = {};
+    sidebar.overview = 1;
+	res.render('index', {title: 'MD', sidebar: sidebar});
 });
 
 router.get('/user/login', function(req, res){
