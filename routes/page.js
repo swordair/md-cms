@@ -9,6 +9,8 @@ String.prototype.toObjectId = function() {
 };
 
 function pageList(req, res){
+	var username = req.user.username;
+	
 	db.Page.aggregate([{$group : {_id : '$category', pages : {$push : "$$ROOT"}}}]).exec(function(err, docs){
 		if(err) res.send(404);
 		
@@ -23,7 +25,7 @@ function pageList(req, res){
 		console.log('-------------------------');
         var sidebar = {};
         sidebar.pages = 1;
-		res.render('page_list', {title: 'MD', pageGroup : docs, sidebar: sidebar});
+		res.render('page_list', {title: 'MD', pageGroup : docs, sidebar: sidebar, username: username});
     });
 }
 
