@@ -32,3 +32,8 @@ table td.none{background:#D96244;color:#fff;}
 table td.none a{color:#fff;}
 .exist,.none,.th-lang-flag{text-align:center;}
 .td-page-title{width:40%;}
+
+/* psd-form */
+.psd-form{width:400px;}
+.psd-form input{margin-bottom:10px;}
+.psd-form input.btn-primary{float:right}

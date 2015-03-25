@@ -18,7 +18,7 @@
                 </tr>
                 {{#each users}}
                 <tr>
-                    <td><a href="/users/{{this.username}}">{{this.username}}</a></td><td>{{this.mail}}</td>
+                    <td><a href="/users/{{this.username}}">{{this.username}}</a></td><td>{{this.email}}</td>
                     <td>
                     {{#unless this.admin}}
                     <a href="/admin/user/remove/{{this.username}}">remove</a>
