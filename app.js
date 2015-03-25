@@ -79,11 +79,13 @@ app.use(express.static(path.join(__dirname, 'public')));
 var userRouter = require('./routes/user');
 var pageRouter = require('./routes/page');
 var adminRouter = require('./routes/admin');
+var historyRouter = require('./routes/history');
 
 /* routes */
 app.use('/', userRouter);
 app.use('/', pageRouter);
 app.use('/', adminRouter);
+app.use('/', historyRouter);
 
 
 /* catch 404 and forward to error handler */

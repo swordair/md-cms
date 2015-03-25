@@ -3,6 +3,8 @@ var bcrypt = require('bcrypt');
 
 var SALT_WORK_FACTOR = 10;
 
+var ObjectId = mongoose.Schema.Types.ObjectId;
+
 exports.mongoose = mongoose;
 
 mongoose.connect('localhost', 'md-cms');
@@ -30,6 +32,15 @@ var userSchema = mongoose.Schema({
     admin : {type: Boolean, 'default' : false}
 });
 
+var historySchema = mongoose.Schema({
+	pageID: ObjectId,
+	content: String,
+	title: String,
+	lang: String,
+	operator: String,
+	operation: String,
+	date: { type: Date, default: Date.now }
+});
 
 userSchema.methods.comparePassword = function(cPassword, cb){
     bcrypt.compare(cPassword, this.password, function(err, isMatch){
@@ -55,9 +66,11 @@ userSchema.pre('save', function(next){
 
 var User = mongoose.model('User', userSchema);
 var Page = mongoose.model('Page', pageSchema);
+var History = mongoose.model('History', historySchema);
 
-var ObjectId = mongoose.Schema.Types.ObjectId;
+
 
 exports.ObjectId = ObjectId;
 exports.User = User;
 exports.Page = Page;
+exports.History = History;

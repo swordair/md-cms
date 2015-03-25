@@ -1,0 +1,33 @@
+{{!< default}}
+
+
+{{!< default}}
+
+<div class="container-fluid">
+    <div class="row">
+        {{> sidebar}}
+        
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+            <h1 class="page-header">{{title}}</h1>
+            
+            <h3>history list</h3>
+            
+            <table class="table">
+                <tr>
+                    <th>date</th><th>page</th><th>language</th><th>operator</th><th>operation</th>
+                </tr>
+                {{#each histories}}
+                <tr>
+                	<td>{{this.dateFromNow}}</td>
+                    <td>{{this.title}}</td>
+                    <td>{{this.lang}}</td>
+                    <td>{{this.operator}}</td>
+                    <td>{{this.operation}}</td>
+                    
+                </tr>
+                {{/each}}
+            </table>
+            
+        </div>
+    </div>
+</div>

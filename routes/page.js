@@ -83,6 +83,7 @@ function pageEdit(req, res){
 function pageAdd(req, res){
 	var pId = req.params.pId;
 	var lang = req.params.lang;
+	var username = req.user.username;
 	
 	if(req.method == "GET"){
 		res.render('page_add', {title: 'MD'});
@@ -90,7 +91,7 @@ function pageAdd(req, res){
 		
 		var title = req.body.title;
 	    var category = 'faq';
-	    var lang = req.body.lang;
+	    lang = req.body.lang;
 	    var url = req.body.url;
 	    var mdContent = req.body.mdContent;
 		var content = {lang : lang, title : title, url : url, mdContent : mdContent};
@@ -104,6 +105,15 @@ function pageAdd(req, res){
 	    	if(err){
 	    		console.log(err);
 	    	}else{
+	    		(new db.History({
+	    			pageID: doc._id,
+	    			lang: lang,
+					content: doc.contents[0].mdContent,
+					title: doc.title,
+					operator: username,
+					operation: 'Create'
+	    		})).save(function(err, doc){});
+	    		
 	    		console.log('new page created');
 	    		res.redirect('/page');
 	    	}
