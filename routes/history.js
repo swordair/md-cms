@@ -7,7 +7,7 @@ var moment = require('moment');
 function historyList(req, res){
 	
 	
-	db.History.find({}, function(err, docs){
+	db.History.find({}).sort({'date':-1}).exec(function(err, docs){
         var sidebar = {};
 		sidebar.history = 1;
        	

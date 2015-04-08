@@ -33,6 +33,7 @@ function pageList(req, res){
 function pageEdit(req, res){
 	var pId = req.params.pId;
 	var lang = req.params.lang;
+    var username = req.user.username;
 	
 	var title = req.body.title;
     var category = 'faq';
@@ -61,6 +62,16 @@ function pageEdit(req, res){
 				if(i == len){
 					db.Page.findOneAndUpdate({_id : pId.toObjectId()}, {$push: {contents: content}}, {safe: true, upsert: true}, function(err, doc){
 						if(err){console.log(err);}
+                        
+                        (new db.History({
+                            pageID: doc._id,
+                            lang: lang,
+                            content: content.mdContent,
+                            title: content.title,
+                            operator: username,
+                            operation: 'Language add'
+                        })).save(function(err, doc){});
+                        
 						res.redirect('/page');
 					});
 				}else{
@@ -71,6 +82,15 @@ function pageEdit(req, res){
 					}}, function(err, doc){
 						if(err){console.log(err);}
 						
+                        (new db.History({
+                            pageID: doc._id,
+                            lang: lang,
+                            content: content.mdContent,
+                            title: content.title,
+                            operator: username,
+                            operation: 'Update'
+                        })).save(function(err, doc){});
+                        
 						res.redirect('/page');
 					});
 				}
