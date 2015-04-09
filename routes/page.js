@@ -3,9 +3,11 @@ var router = express.Router();
 var passport = require('passport');
 var db = require('../config/db.js');
 
+var navbar = {page:1};
+
 String.prototype.toObjectId = function() {
-  var ObjectId = (require('mongoose').Types.ObjectId);
-  return new ObjectId(this.toString());
+	var ObjectId = (require('mongoose').Types.ObjectId);
+	return new ObjectId(this.toString());
 };
 
 function pageList(req, res){
@@ -23,9 +25,7 @@ function pageList(req, res){
 			}
 		}
 		console.log('-------------------------');
-        var sidebar = {};
-        sidebar.pages = 1;
-		res.render('page_list', {title: 'MD', pageGroup : docs, sidebar: sidebar, username: username});
+		res.render('page_list', {title: 'MD', pageGroup : docs, navbar: navbar, username: username});
     });
 }
 
@@ -55,7 +55,7 @@ function pageEdit(req, res){
 				}
 			}
 			if(req.method == 'GET'){
-				res.render('page_edit', {pId: pId, page : doc.contents[i], langFlag: langFlag});
+				res.render('page_edit', {pId: pId, page : doc.contents[i], langFlag: langFlag, navbar: navbar,});
 			}
 			if(req.method == 'POST'){
 				

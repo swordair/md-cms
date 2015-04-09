@@ -1,4 +1,6 @@
 body{padding-top:50px;}
+h1{color:#444;}
+h2, h3{color:#666;}
 
 /* sign in */
 .form-signin{max-width:330px;padding:15px;margin:0 auto;}

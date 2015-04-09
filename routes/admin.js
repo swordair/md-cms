@@ -42,7 +42,7 @@ function manageUser(req, res){
         var sidebar = {};
         sidebar.users = 1;
         
-		res.render('admin', {title: 'admin page', users: docs, sidebar: sidebar, username: username});
+		res.render('admin', {title: 'User Management', users: docs, sidebar: sidebar, username: username});
 	});
 }
 
