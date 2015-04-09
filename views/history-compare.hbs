@@ -1,0 +1,36 @@
+<!DOCTYPE HTML>
+<html lang="en-US">
+<head>
+	<meta charset="UTF-8">
+	<title>{{title}}</title>
+    <link rel="stylesheet" href="/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="/css/font-awesome.css" />
+    <link rel="stylesheet" href="/css/style.css" />
+</head>
+<body>
+{{> header}}
+
+<div class="container-fluid">
+    <div class="row">
+        {{> sidebar}}
+        
+        <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+            <h1 class="page-header">{{title}}</h1>
+            
+            <h3>compare</h3>
+            
+            <pre class="compare-pre">{{{diffContent}}}</pre>
+            
+            
+        </div>
+    </div>
+</div>
+
+{{> footer}}
+<script type="text/javascript">
+
+
+
+</script>
+</body>
+</html>

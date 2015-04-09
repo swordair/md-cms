@@ -37,3 +37,6 @@ table td.none a{color:#fff;}
 .psd-form{width:400px;}
 .psd-form input{margin-bottom:10px;}
 .psd-form input.btn-primary{float:right}
+
+.compare-pre del{background:#FFA49B;color:#C9280B;}
+.compare-pre ins{background:#C6D86C;color:#31530E;text-decoration:none;}

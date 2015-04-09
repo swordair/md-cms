@@ -55,7 +55,7 @@ function pageEdit(req, res){
 				}
 			}
 			if(req.method == 'GET'){
-				res.render('page_edit', {page : doc.contents[i], langFlag: langFlag});
+				res.render('page_edit', {pId: pId, page : doc.contents[i], langFlag: langFlag});
 			}
 			if(req.method == 'POST'){
 				
