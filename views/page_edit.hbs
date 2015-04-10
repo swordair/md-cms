@@ -51,9 +51,12 @@
             <div class="row">
                 
                 <section class="operation-block col-md-4">
+                	<section class="entry-url col-md-8" style="display:none;">
+                    	<input name="url" type="text" value="{{page.url}}" placeholder="Page URL"/>
+                	</section>
                     <input type="submit" class="btn btn-primary" value="Save" />
                     
-                    <a class="btn btn-default" href="/history/{{pId}}/en">View history</a>
+                    <a class="btn btn-default" href="/history/{{pId}}/{{lang}}">View history</a>
                 </section>
             </div>
         </footer>

@@ -33,8 +33,9 @@ function historyList(req, res){
 
 function pageHistory(req, res){
     var pId = req.params.pId;
+    var lang = req.params.lang;
     
-    db.History.find({pageID : pId.toObjectId()}).sort({'date':-1}).exec(function(err, docs){
+    db.History.find({pageID : pId.toObjectId(), lang : lang}).sort({'date':-1}).exec(function(err, docs){
         docs.forEach(function(item){
        		item.dateFromNow = moment(item.date).fromNow();
        	});
@@ -72,8 +73,8 @@ function compareHistory(req, res){
                 }
             }
             
-            curVer[0].dateFormated = moment(curVer[0].date).format('MMMM Do YYYY, hh:mm:ss a');
-            preVer[0].dateFormated = moment(preVer[0].date).format('MMMM Do YYYY, hh:mm:ss a');
+            curVer[0].dateFormated = moment(curVer[0].date).format('MMMM Do YYYY, HH:mm:ss');
+            preVer[0].dateFormated = moment(preVer[0].date).format('MMMM Do YYYY, HH:mm:ss');
             
             res.render('history-compare', {title: 'History compare', diffContent: html, navbar: navbar, curVer: curVer[0], preVer: preVer[0]});
         });

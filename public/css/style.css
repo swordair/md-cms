@@ -43,3 +43,8 @@ table td.none a{color:#fff;}
 
 .compare-pre del{background:#FFA49B;color:#C9280B;}
 .compare-pre ins{background:#C6D86C;color:#31530E;text-decoration:none;}
+
+/* history diff */
+td.new-added{background:#BBCE5B;color:#fff;font-family:Menlo,Monaco,Consolas,"Courier New",monospace;}
+td.old-removed{background:#F87A7A;color:#fff;font-family:Menlo,Monaco,Consolas,"Courier New",monospace;}
+pre{border-radius:0;background:#fafafa;}

@@ -36,7 +36,7 @@ function pageEdit(req, res){
     var username = req.user.username;
 	
 	var title = req.body.title;
-    var category = 'faq';
+    var category = 'FAQ';
     var language = req.body.lang;
     var url = req.body.url;
     var mdContent = req.body.mdContent;
@@ -54,8 +54,9 @@ function pageEdit(req, res){
 					break;
 				}
 			}
+			
 			if(req.method == 'GET'){
-				res.render('page_edit', {pId: pId, page : doc.contents[i], langFlag: langFlag, navbar: navbar,});
+				res.render('page_edit', {pId: pId, page : doc.contents[i], langFlag: langFlag, navbar: navbar, lang: lang});
 			}
 			if(req.method == 'POST'){
 				
@@ -76,12 +77,12 @@ function pageEdit(req, res){
 					});
 				}else{
 					db.Page.findOneAndUpdate({_id : pId.toObjectId(), "contents.lang" : lang}, {$set: {
-							"contents.$.title" : content.title, 
-							"contents.$.url" : content.url,
-							"contents.$.mdContent" : content.mdContent
+							"contents.$.title" : 'content.title', 
+							"contents.$.url" : 'content.url',
+							"contents.$.mdContent" : 'content.mdContent'
 					}}, function(err, doc){
 						if(err){console.log(err);}
-						
+
                         (new db.History({
                             pageID: doc._id,
                             lang: lang,
@@ -93,6 +94,8 @@ function pageEdit(req, res){
                         
 						res.redirect('/page');
 					});
+					
+					
 				}
 			}
 		});
@@ -110,7 +113,7 @@ function pageAdd(req, res){
 	}else if(req.method == "POST"){
 		
 		var title = req.body.title;
-	    var category = 'faq';
+	    var category = 'FAQ';
 	    lang = req.body.lang;
 	    var url = req.body.url;
 	    var mdContent = req.body.mdContent;
