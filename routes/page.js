@@ -77,9 +77,9 @@ function pageEdit(req, res){
 					});
 				}else{
 					db.Page.findOneAndUpdate({_id : pId.toObjectId(), "contents.lang" : lang}, {$set: {
-							"contents.$.title" : 'content.title', 
-							"contents.$.url" : 'content.url',
-							"contents.$.mdContent" : 'content.mdContent'
+							"contents.$.title" : content.title, 
+							"contents.$.url" : content.url,
+							"contents.$.mdContent" : content.mdContent
 					}}, function(err, doc){
 						if(err){console.log(err);}
 
