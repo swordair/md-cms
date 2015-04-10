@@ -14,9 +14,20 @@
     <div class="row">
         
         <div class="main">
-            <h1 class="page-header">{{title}}</h1>
+           	<div>
+                <table class="table table-bordered">
+                    <tr>
+                        <td width="10" style="background:#C6D86C;"></td>
+                        <td>{{curVer.dateFormated}}</td>
+                    </tr>
+                    <tr>
+                        <td width="10" style="background:#FFA49B;"></td>
+                        <td>{{preVer.dateFormated}}</td>
+                    </tr>
+                </table>
+            </div>
             
-            <h3>compare</h3>
+            
             
             <pre class="compare-pre">{{{diffContent}}}</pre>
             

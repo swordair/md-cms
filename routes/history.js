@@ -23,7 +23,7 @@ function historyList(req, res){
 		sidebar.history = 1;
        	
        	docs.forEach(function(item){
-       		console.log(moment(item.date).fromNow())
+       		console.log(moment(item.date).fromNow());
        		item.dateFromNow = moment(item.date).fromNow();
        	});
        	
@@ -52,10 +52,9 @@ function compareHistory(req, res){
             if(err) console.log(err);
             
             var html = ''
-            
             var diff = jsdiff.diffLines(preVer[0].content, curVer[0].content);
-            
-            console.log(diff)
+			
+			
             
             for(i = 0; i < diff.length; i++){
                 if (diff[i].added && diff[i + 1] && diff[i + 1].removed) {
@@ -73,7 +72,10 @@ function compareHistory(req, res){
                 }
             }
             
-            res.render('history-compare', {title: 'History compare', diffContent: html, navbar: navbar});
+            curVer[0].dateFormated = moment(curVer[0].date).format('MMMM Do YYYY, hh:mm:ss a');
+            preVer[0].dateFormated = moment(preVer[0].date).format('MMMM Do YYYY, hh:mm:ss a');
+            
+            res.render('history-compare', {title: 'History compare', diffContent: html, navbar: navbar, curVer: curVer[0], preVer: preVer[0]});
         });
     });
 }
